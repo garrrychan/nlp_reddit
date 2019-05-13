@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheets/style_home_reddit.css') }}">
+<header>
+</header>
+<section class = "container-outer">
+  <section class = "container-inner">
+<div class = "heading">
+<h3>PRO LIFE</h3>
+<h2>TIPS</h2>
+</div>
+<div class = "user-input">
+<p> {{ sample }} </p>
+<body>
+      <form action="." method="POST" autocomplete="off">
+      <input class = "formtext" type="text" name="text" placeholder="Enter PLT or UPLT" autofocus="autofocus" spellcheck="false" >
+    </form>
+</body>
+</div>
+</section>
+</section>
+<div class = "footer">
+<img src="{{ url_for('static',filename='images/reddit_logo.png')}}" width="8%" height="8%" id="reddit_logo" alt="reddit_logo"/>
+<p>AN APP TO DETECT UNETHICAL PRO LIFE TIPS FROM REDDIT <pr> <br>
+<p>Sourced from real posts from: <br>
+/r/lifeprotips &nbsp /r/unethicallifeprotips</p>
+</div>
+
+</html>
