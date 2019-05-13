@@ -4,13 +4,13 @@ from flask import request, Flask, render_template
 
 app = Flask(__name__)
 
-final = pd.read_csv("./final.csv", encoding='utf-8')
+final = pd.read_csv("./data/final.csv", encoding='utf-8')
 
 sample_list = []
 # home page
 @app.route('/', methods=['GET'])
 def form():
-    sample = final.title_clean.sample()
+    sample = final.title.sample()
     sample_show = sample.values[0].strip().capitalize()
     sample_list.append([sample_show,sample.index[0]])
     return render_template("form.html", sample = sample_show)

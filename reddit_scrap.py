@@ -48,7 +48,7 @@ if __name__ == "__main__":
     ''' scrap the following subreddits '''
 
     all_posts = fetch_subreddit("https://www.reddit.com/r/lifeprotips/top/.json?sort=top&t=all", pages=40)
-    pd.DataFrame(all_posts).to_csv("lpt.csv", index=False)
+    pd.DataFrame(all_posts).to_csv("./data/lpt.csv", index=False)
 
     all_posts = fetch_subreddit("https://www.reddit.com/r/unethicallifeprotips/top/.json?sort=top&t=all", pages=40)
-    pd.DataFrame(all_posts).to_csv("unlpt.csv",index=False)
+    pd.DataFrame(all_posts).to_csv("./data/unlpt.csv",index=False)
