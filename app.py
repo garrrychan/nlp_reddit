@@ -51,7 +51,6 @@ def form_post():
     # if button is pressed
     try:
         guess = request.form['guess']
-        print(guess)
         sample = sample_list[-1][0] # get the latest sample
         index = sample_list[-1][1] # get the index
         prediction = final.iloc[index].prediction
@@ -66,7 +65,6 @@ def form_post():
     except:
         # text field is completed
         input = request.form["text"]
-        print(input)
         if predict(input)[0][0] == 0:
             prediction = "Life Pro Tip"
         else:
