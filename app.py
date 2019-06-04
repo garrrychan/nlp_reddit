@@ -30,7 +30,7 @@ def post_to_words(raw_post):
 
 def predict(input):
     input_ready = re.sub(r"[uU]*[lL][pP][tT]\s*:*", '', post_to_words(input))
-    cvect = pickle.load(open("./my_tuple.pkl","rb"))[-1]
+    cvect = pickle.load(open("./cvect.pkl","rb"))
     # pre-learned 5104 vocabulary
     new_data = cvect.transform([input_ready])
     logmodel = pickle.load(open("./logmodel.pkl","rb"))
