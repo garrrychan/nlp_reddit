@@ -1,6 +1,46 @@
 import pandas as pd
 import numpy as np
 from flask import request, Flask, render_template
+# for new predictions
+import re
+import nltk
+from nltk.tokenize import RegexpTokenizer
+from nltk.corpus import stopwords
+from sklearn.model_selection import train_test_split
+from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
+from nltk.stem import WordNetLemmatizer
+from sklearn.preprocessing import LabelEncoder, StandardScaler, LabelBinarizer
+from sklearn_pandas import DataFrameMapper
+from sklearn.model_selection import GridSearchCV
+from sklearn.linear_model import LogisticRegression
+from sklearn.exceptions import DataConversionWarning
+import pickle
+import warnings
+warnings.filterwarnings(action='ignore', category=DataConversionWarning)
+warnings.filterwarnings(action='ignore', category=FutureWarning)
+np.set_printoptions(suppress=True)
+
+def post_to_words(raw_post):
+    '''Returns a list of words ready for classification, by tokenizing,
+    removing punctuation, setting to lower case and removing stop words.'''
+    tokenizer = RegexpTokenizer(r'[a-z]+')
+    words = tokenizer.tokenize(raw_post.lower())
+    meaningful_words = [w for w in words if not w in set(stopwords.words('english'))]
+    return(" ".join(meaningful_words))
+
+def predict(input):
+    input_ready = re.sub(r"[uU]*[lL][pP][tT]\s*:*", '', post_to_words(input))
+    cvect = pickle.load(open("./my_tuple.pkl","rb"))[-1]
+    # pre-learned 5104 vocabulary
+    new_data = cvect.transform([input_ready])
+    logmodel = pickle.load(open("./logmodel.pkl","rb"))
+    prediction = logmodel.predict(new_data)
+    proba_lpt = logmodel.predict_proba(new_data)
+    # prob of life pro tip "0"
+    print(input)
+    return prediction, proba_lpt[:,0][0]
+
+### run app ###
 
 app = Flask(__name__)
 
@@ -11,17 +51,18 @@ sample_list = []
 @app.route('/', methods=['GET'])
 def form():
     sample = final.title.sample()
-    sample_show = sample.values[0].strip().capitalize()
-    sample_list.append([sample_show,sample.index[0]])
+    sample_show = sample.values[0].strip()
+    sample_list.append([sample_show,sample.index[0]]) # save the index
     return render_template("form.html", sample = sample_show)
 
 # Return prediction
 @app.route('/', methods=['POST'])
 def form_post():
-    if request.method == 'POST':
-        guess = request.form['text']
+    # if button is pressed
+    try:
+        guess = request.form['guess']
         sample = sample_list[-1][0] # get the latest sample
-        index = sample_list[-1][1]
+        index = sample_list[-1][1] # get the index
         prediction = final.iloc[index].prediction
         # ensure probability matches prediction
         if final.iloc[index].proba_lpt >= 0.5:
@@ -29,7 +70,18 @@ def form_post():
         else:
             probability = 1-final.iloc[index].proba_lpt
         label = final.iloc[index].label
-    return render_template("result.html", guess = guess, pred = prediction, prob = round(probability*100,2), label = label)
+
+        return render_template("result.html", sample=sample, guess = guess, pred = prediction, prob = round(probability*100,1), label = label)
+    except:
+        # text field is completed
+        input = request.form["text"]
+        if predict(input)[0][0] == 0:
+            prediction = "Life Pro Tip"
+        else:
+            prediction = "Unethical Life Pro Tip"
+
+        probability = predict(input)[1]
+        return render_template("result_new.html", sample=input, pred = prediction, prob = round(probability*100,1))
 
 if __name__ == '__main__':
     app.run(debug=True)

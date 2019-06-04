@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheets/style.css') }}">
+<link rel="shortcut icon" href="static/images/icon.png">
+<header>
+</header>
+
+<section class = "container-outer">
+  <section class = "container-inner">
+<div class = "heading center">
+  <h3>LIFE PRO</h3>
+  <h3>TIPS</h3>
+</div>
+
+  <body>
+  <div class="input right">
+    {{sample}}
+    <br>
+    <br>
+
+    <h4>The model is <span style="color:#ff4301;">{{ prob }}%</span> confident that this post is a <span style="color:#ff4301;">{{ pred }}</span></h4>
+    <br>
+    <font style="color:#cccccc;"> Reminder: This model was pre-trained on a corpus of Reddit posts, so if you input random words, it won't perform well! </font>
+
+    <br>
+    <br>
+
+      <a href ="/">
+      <input class = "btn btn-info btn-lg" type = "button" value = "Play again"></input></a>
+
+  </div>
+  </body>
+
+</section>
+</section>
+
+<div class = "footer">
+<img src="{{ url_for('static',filename='images/reddit_logo.png')}}" width="8%" height="8%" id="reddit_logo" alt="reddit_logo"/>
+<br>
+<br>
+An app to detect unethical life pro tips from Reddit
+<br>
+<br>
+<p>Sourced from real posts <br>
+/r/lifeprotips &nbsp /r/unethicallifeprotips</p>
+</div>
+</html>

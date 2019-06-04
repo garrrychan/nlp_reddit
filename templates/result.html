@@ -1,37 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheets/style_result_reddit.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheets/style.css') }}">
+<link rel="shortcut icon" href="static/images/icon.png">
 <header>
 </header>
+
 <section class = "container-outer">
   <section class = "container-inner">
-<div class = heading>
-<h3>LIFE PRO</h3>
-<h2>TIPS</h2>
+<div class = "heading center">
+  <h3>LIFE PRO</h3>
+  <h3>TIPS</h3>
 </div>
-<div class = "user-input">
-<body>
-  <h4>You said that this belongs to:</h4>
-  <h4 <b style="color:#ff4301;">{{ guess }}</b><h4>
 
-  <h4>The model is <b style="color:#ff4301;">{{ prob }}%</b> confident
-  that this article is from <b style="color:#ff4301;">{{ pred }}</b>.</h4>
-  <br>
+  <body>
+  <div class="input right">
+    {{sample}}
+    <br>
+    <br>
+    <h4>You said that this belongs to:
+    <span style="color:#ff4301;">{{ guess }}</span></h4>
+    <br>
 
-  <h4>This post is actually from <b style="color:#ff4301;"> {{ label }} <b></h4>
+    <h4>The model is <span style="color:#ff4301;">{{ prob }}%</span> confident that this post is from <span style="color:#ff4301;">{{ pred }}</span></h4>
+    <br>
 
+    <h4>This post is actually from <font color="#ff4301"> {{ label }} </font>
+    </h4>
+    <br>
 
-  <p></p>
-</body>
-<a class = "buttoncontain" href = "{{ url_for('form') }}"><input class = "butt" type = "button" value = "Refresh"></input></a>
-</div>
+      <a href ="/">
+      <input class = "btn btn-info btn-lg" type = "button" value = "Play again"></input></a>
+
+  </div>
+  </body>
 
 </section>
 </section>
+
 <div class = "footer">
 <img src="{{ url_for('static',filename='images/reddit_logo.png')}}" width="8%" height="8%" id="reddit_logo" alt="reddit_logo"/>
-<p>AN APP TO DETECT UNETHICAL LIFE PRO TIPS FROM REDDIT <pr> <br>
+<br>
+<br>
+An app to detect unethical life pro tips from Reddit
+<br>
+<br>
 <p>Sourced from real posts <br>
-  /r/lifeprotips &nbsp /r/unethicallifeprotips</p>
+/r/lifeprotips &nbsp /r/unethicallifeprotips</p>
 </div>
 </html>

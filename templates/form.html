@@ -1,29 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheets/style_home_reddit.css') }}">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type= "text/css" href= "{{ url_for('static',filename='stylesheets/style.css') }}">
+<link rel="shortcut icon" href="static/images/icon.png">
 <header>
 </header>
+
 <section class = "container-outer">
   <section class = "container-inner">
-<div class = "heading">
-<h3>LIFE PRO</h3>
-<h2>TIPS</h2>
-</div>
-<div class = "user-input">
-<p> {{ sample }} </p>
-<body>
-      <form action="." method="POST" autocomplete="off">
-      <input class = "formtext" type="text" name="text" placeholder="Enter LPT or ULPT" autofocus="autofocus" spellcheck="false" >
-    </form>
-</body>
-</div>
-</section>
-</section>
-<div class = "footer">
-<img src="{{ url_for('static',filename='images/reddit_logo.png')}}" width="8%" height="8%" id="reddit_logo" alt="reddit_logo"/>
-<p>AN APP TO DETECT UNETHICAL LIFE PRO TIPS FROM REDDIT <pr> <br>
-<p>Sourced from real posts<br>
-/r/lifeprotips &nbsp /r/unethicallifeprotips</p>
+<div class = "heading center">
+  <h3>LIFE PRO</h3>
+  <h3>TIPS</h3>
+  <br>
 </div>
 
+  <body>
+    <div class = "user-input">
+        <p class="input"> {{ sample }} </p>
+      <form method="POST" action="/">
+        <input type="submit" class="btn btn-success btn-lg" name="guess" value="LifeProTip  👍🏼">
+        &nbsp &nbsp &nbsp
+        <input type="submit" class="btn btn-danger btn-lg" name="guess" value="Unethical  👎🏼">
+
+      </form>
+      <!-- fill in your own -->
+      <form method="POST" action="/" autocomplete="off">
+        <input type="text" class = "formtext" name="text" placeholder="Or enter your own tip!"
+        autofocus="autofocus" spellcheck="false">
+      </form>
+
+  </div>
+  </body>
+
+</section>
+</section>
+
+<div class = "footer">
+<img src="{{ url_for('static',filename='images/reddit_logo.png')}}" width="8%" height="8%" id="reddit_logo" alt="reddit_logo"/>
+<br>
+<br>
+An app to detect unethical life pro tips from Reddit
+<br>
+<br>
+<p>Sourced from real posts <br>
+/r/lifeprotips &nbsp /r/unethicallifeprotips</p>
+</div>
 </html>
