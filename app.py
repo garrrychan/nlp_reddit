@@ -6,19 +6,9 @@ import re
 import nltk
 from nltk.tokenize import RegexpTokenizer
 from nltk.corpus import stopwords
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
-from nltk.stem import WordNetLemmatizer
-from sklearn.preprocessing import LabelEncoder, StandardScaler, LabelBinarizer
-from sklearn_pandas import DataFrameMapper
-from sklearn.model_selection import GridSearchCV
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
-from sklearn.exceptions import DataConversionWarning
 import pickle
-import warnings
-warnings.filterwarnings(action='ignore', category=DataConversionWarning)
-warnings.filterwarnings(action='ignore', category=FutureWarning)
-np.set_printoptions(suppress=True)
 
 def post_to_words(raw_post):
     '''Returns a list of words ready for classification, by tokenizing,
