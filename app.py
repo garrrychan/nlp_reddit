@@ -67,10 +67,11 @@ def form_post():
         input = request.form["text"]
         if predict(input)[0][0] == 0:
             prediction = "Life Pro Tip"
+            probability = predict(input)[1]
         else:
             prediction = "Unethical Life Pro Tip"
+            probability = 1-predict(input)[1]
 
-        probability = predict(input)[1]
         return render_template("result_new.html", sample=input, pred = prediction, prob = round(probability*100,1))
 
 if __name__ == '__main__':
