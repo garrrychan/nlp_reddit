@@ -13,7 +13,7 @@ Example: "If you want to learn a new language, figure out the 100 most frequentl
 
 Example: "Save business cards of people you don't like. If you ever hit a parked car accidentally, just write "sorry" on the back and leave it on the windshield."
 
-Using the Reddit API, I've collected over 1960 total top posts (web scrap) from 2 subreddits, then created a machine learning model using Natural Language Processing (NLP) to classify which subreddit a particular post belongs too.
+Using the Reddit API, I've collected over 1960 total top posts (web scrap) from 2 subreddits, then created a machine learning model using Natural Language Processing (NLP) to classify which subreddit a particular post belongs to.
 
 
 Can my model pick up on sarcasm, internet 'trolling', or tongue-in-cheek semantic of sentences? Probably not, but let's try. I hope you have as much fun playing with this, as I did making it. Tokenizing was completed using nltk, comparing Count Vectorizer and Term Frequency-Inverse Frequency Vectorizers.
